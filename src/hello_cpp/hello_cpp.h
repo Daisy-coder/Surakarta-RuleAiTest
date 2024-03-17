@@ -10,6 +10,7 @@ namespace hello_cpp {
 
 int Add(int a, int b) {
     // TODO: return a + b
+    return a + b;
     return 0;
 }
 
@@ -19,6 +20,15 @@ std::unique_ptr<std::vector<SurakartaPosition>> GenerateAllPositions();
 
 std::unique_ptr<std::vector<SurakartaPosition>> GenerateAllPositions() {
     // TODO: generate {0, 0}, {0, 1}, ..., {5, 5} in a vector, and return it.
+    auto positions = std::make_unique<std::vector<SurakartaPosition>>();
+
+    for (unsigned int i = 0; i < 6; ++i) {
+        for (unsigned int j = 0; j < 6; ++j) {
+            positions->push_back({i, j});
+        }
+    }
+
+    return positions;
     return nullptr;
 }
 
@@ -37,10 +47,16 @@ class SmartPointerContainer : public Base {  // don't mind the "public Base" for
 
     SmartPointerContainer(int a, double b, int c, double d, int e, double f) {
         // TODO: Initialize ptr1_, ptr2_, ptr3_ with the given values. {a, b}, {c, d}, {e, f}
+        ptr1_ = std::make_shared<std::pair<int, double>>(a, b);
+        ptr2_ = std::make_shared<std::pair<int, double>>(c, d);
+        ptr3_ = std::make_shared<std::pair<int, double>>(e, f);
     }
 
     // TODO: Create a member function named "DoSomething" that returns the sum of the pairs' first elements.
     // int DoSomething() {...}
+    int DoSomething() {
+        return ptr1_->first + ptr2_->first + ptr3_->first;
+    }
 };
 
 int* DoSomething1(int* ptr) {
@@ -70,14 +86,14 @@ int* LearningRawPtr() {
 
 std::unique_ptr<int> LearningUniquePtr() {
     // TODO: Do the same thing as LearningRawPtr, but with std::unique_ptr.
-    return nullptr;
+    // return nullptr;
 
     // Here is an implementation, please modify it to achieve the goal. (Fisrtly, you need to uncomment the code below.)
 
-    // std::unique_ptr<int> u_ptr = std::make_unique<int>(1);
-    // DoSomething2(u_ptr);
-    // std::cout << *u_ptr << std::endl;
-    // return u_ptr; // No memory leak will occur.
+    std::unique_ptr<int> u_ptr = std::make_unique<int>(1);
+    u_ptr = DoSomething2(std::move(u_ptr));
+    std::cout << *u_ptr << std::endl;
+    return u_ptr;  // No memory leak will occur.
 }
 
 }  // namespace hello_cpp
