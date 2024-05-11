@@ -162,6 +162,9 @@ make -j
 
 在本作业中旬，我们上传了一份更详细的思路介绍，见 [主仓库 guidance/lectures](https://github.com/panjd123/Surakarta/blob/main/guidance/lectures/stage1.md)。
 
+### 答案
+
+答案在 `solution` 目录下，解密密码请关注微信群，择时发布。
 
 ### 测试
 
